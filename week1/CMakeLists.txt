@@ -207,6 +207,12 @@ include_directories(
    # myfile2
    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
  )
+ 
+ catkin_install_python(PROGRAMS scripts/goal1.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+ catkin_install_python(PROGRAMS scripts/goal2.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+ catkin_install_python(PROGRAMS scripts/goal3.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+ catkin_install_python(PROGRAMS scripts/goal4.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+ 
 
 #############
 ## Testing ##
