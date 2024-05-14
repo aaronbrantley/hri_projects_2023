@@ -10,10 +10,10 @@ class ObstacleCheck:
         rospy.Subscriber ("base_scan", sensor_msgs.msg.LaserScan, closestReading)
         rospy.spin ()
         
-    def validValue (inputRange, inputMin, inputMax):
+    def validValue (self, inputRange, inputMin, inputMax):
         return inputRange >= inputMin and inputRange =< inputMax
 
-    def closestReading (data):
+    def closestReading (self, data):
         initialValue = False
         result = float (-1)
         minRange = data.range_min

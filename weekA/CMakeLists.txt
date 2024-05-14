@@ -190,6 +190,10 @@ include_directories(
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
 
+catkin_install_python(PROGRAMS scripts/speechRepeat.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+catkin_install_python(PROGRAMS scripts/speechCommands.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+catkin_install_python(PROGRAMS scripts/speechResponse.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
 #############
 ## Testing ##
 #############

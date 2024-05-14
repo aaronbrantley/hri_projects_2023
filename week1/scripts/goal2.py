@@ -63,7 +63,7 @@ def moveFigureEight ():
         turned360 = not turned360 # probably need to change this to check the robot's current angle
         
         pub.publish (moveMessage)
-        rate.sleep ()) 
+        rate.sleep ()
         
 def moveTriangle ():
     pub = rospy.Publisher ('cmd_vel', Twist, queue_size = 10)
