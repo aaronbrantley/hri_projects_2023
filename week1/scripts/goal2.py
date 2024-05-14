@@ -4,15 +4,14 @@ from std_msgs.msg import String
 
 def moveSquare ():
     pub = rospy.Publisher ('cmd_vel', Twist, queue_size = 10)
-    rospy.init_node ('moveTalker', anonymous = True)
     rate = rospy.Rate (10)
-    
+
     moveMessage = Twist ()
     moved = False
     forwardSpeed = 1.0
     squareAngle = 1.0
     stopped = 0
-    
+
     while not rospy.is_shutdown ():
         if (moved):
             moveMessage.linear.x = stopped
@@ -28,21 +27,20 @@ def moveSquare ():
             moveMessage.angular.x = stopped
             moveMessage.angular.y = stopped
             moveMessage.angular.z = stopped
-    
+
         moved = not moved # probably need to change this to check the robot's current angle
-        
+
         pub.publish (moveMessage)
-        rate.sleep ()) 
+        rate.sleep ()
 
 def moveFigureEight ():
     pub = rospy.Publisher ('cmd_vel', Twist, queue_size = 10)
-    rospy.init_node ('moveTalker', anonymous = True)
     rate = rospy.Rate (10)
-    
+
     turned360 = False
     forwardSpeed = 1.0
     figureEightAngle = 6.28
-    
+
     while not rospy.is_shutdown ():
         if (turned360):
             moveMessage.linear.x = forwardSpeed
@@ -58,23 +56,23 @@ def moveFigureEight ():
             moveMessage.angular.x = stopped
             moveMessage.angular.y = stopped
             moveMessage.angular.z = stopped
-    
-    
+
+
         turned360 = not turned360 # probably need to change this to check the robot's current angle
-        
+
         pub.publish (moveMessage)
         rate.sleep ()
-        
+
 def moveTriangle ():
     pub = rospy.Publisher ('cmd_vel', Twist, queue_size = 10)
     rospy.init_node ('moveTalker', anonymous = True)
     rate = rospy.Rate (10)
-    
+
     moved = False
     forwardSpeed = 1.0
     triangleAngle = 3.0
     stopped = 0
-    
+
     while not rospy.is_shutdown ():
         if (moved):
             moveMessage.linear.x = stopped
@@ -90,26 +88,27 @@ def moveTriangle ():
             moveMessage.angular.x = stopped
             moveMessage.angular.y = stopped
             moveMessage.angular.z = stopped
-    
-    
+
+
         moved = not moved # probably need to change this to check the robot's current angle
-        
+
         pub.publish (moveMessage)
-        rate.sleep ()) 
+        rate.sleep ()
 
 if __name__ == '__main__':
+    rospy.init_node ('chooseMovement')
     try:
-        rospy.loginfo ("1. Square")
-        rospy.loginfo ("2. Figure-eight")
-        rospy.loginfo ("3. Triangle")
+        rospy.loginfo (rospy.get_caller_id () + ": 1. Square")
+        rospy.loginfo (rospy.get_caller_id () + ": 2. Figure-eight")
+        rospy.loginfo (rospy.get_caller_id () + ": 3. Triangle")
         selection = input ()
-        
+
         if (selection == 1 or selection.lower () == "square"):
             moveSquare ()
         elif (selection == 2 or selection.lower () == "figure-eight"):
             moveFigureEight ()
         elif (selection == 3 or selection.lower () == "triangle"):
             moveTriangle ()
-        
+
     except rospy.ROSInterruptException:
         pass
